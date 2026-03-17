@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export const InstallPrompt = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-  const [showPrompt, setShowPrompt] = useState(true);
+  const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
     const handler = (e: any) => {
@@ -25,25 +25,26 @@ export const InstallPrompt = () => {
     setDeferredPrompt(null);
   };
 
-  // if (!showPrompt) return null;
+  if (!showPrompt) return null;
   
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[1000] bg-[#fcfcfc] flex flex-col items-center justify-center p-8 text-[#121212]"
-    >
-      <button onClick={() => { console.log("Debug Install clicked"); handleInstall(); }} className="bg-red-500 text-white p-2">Debug Install</button>
-      <img src="/logo.png" alt="Logo" className="w-32 h-32 mb-8" />
-      <h2 className="text-3xl font-bold mb-4">Install Unsubzr</h2>
-      <p className="text-center mb-8 text-lg opacity-80">Get the best experience by installing Unsubzr on your device.</p>
-      <button 
-        onClick={handleInstall}
-        className="bg-[#FFC300] text-[#121212] px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:scale-105 active:scale-95 transition-transform"
+    <AnimatePresence>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[1000] bg-[#fcfcfc] flex flex-col items-center justify-center p-8 text-[#121212]"
       >
-        Install App
-      </button>
-    </motion.div>
+        <img src="/splash.png" alt="Logo" className="w-32 h-32 mb-8" />
+        <h2 className="text-3xl font-bold mb-4">Install Unsubzr</h2>
+        <p className="text-center mb-8 text-lg opacity-80">Get the best experience by installing Unsubzr on your device.</p>
+        <button 
+          onClick={handleInstall}
+          className="bg-[#FFC300] text-[#121212] px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:scale-105 active:scale-95 transition-transform"
+        >
+          Install App
+        </button>
+      </motion.div>
+    </AnimatePresence>
   );
 };
