@@ -6,9 +6,7 @@ export const InstallPrompt = () => {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
-    console.log("InstallPrompt: Setting up listener");
     const handler = (e: any) => {
-      console.log("InstallPrompt: beforeinstallprompt fired");
       e.preventDefault();
       setDeferredPrompt(e);
       setShowPrompt(true);
@@ -27,8 +25,8 @@ export const InstallPrompt = () => {
     setDeferredPrompt(null);
   };
 
-  // if (!showPrompt) return null;
-  
+  if (!showPrompt) return null;
+
   return (
     <AnimatePresence>
       <motion.div 
@@ -37,9 +35,7 @@ export const InstallPrompt = () => {
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-[1000] bg-[#fcfcfc] flex flex-col items-center justify-center p-8 text-[#121212]"
       >
-        <button onClick={() => console.log("Debug button clicked")}>Debug Install</button>
-        <p>ShowPrompt: {showPrompt ? 'true' : 'false'}</p>
-        <img src="/logo.png" alt="Logo" className="w-32 h-32 mb-8" />
+        <img src="/splash.png" alt="Logo" className="w-32 h-32 mb-8" />
         <h2 className="text-3xl font-bold mb-4">Install Unsubzr</h2>
         <p className="text-center mb-8 text-lg opacity-80">Get the best experience by installing Unsubzr on your device.</p>
         <button 
